@@ -1,0 +1,24 @@
+#######################################
+# Syntax Coloring Map
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+Stepper	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+setRPM	KEYWORD2
+setAccerelation KEYWORD2
+rotateCW	KEYWORD2
+rotateCCW	KEYWORD2
+setNewPosition KEYWORD2
+setDegree KEYWORD2
+move KEYWORD2
+moveWithBlock KEYWORD2
+stop KEYWORD2
+isRunning KEYWORD2
+
