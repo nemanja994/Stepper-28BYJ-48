@@ -67,8 +67,8 @@ void Stepper::setAccerelation(uint8_t accerelation){
 
 bool Stepper::isSpeedReached(uint16_t interval){
 	// this method checks if the wanted speed is reached
-	if (this->Speed.interval< interval) return true;
-	else return false;
+	if (this->Speed.interval< interval) return false;
+	else return true;
 }
 
 uint16_t Stepper::calculateDelay(){
@@ -79,7 +79,7 @@ uint16_t Stepper::calculateDelay(){
 			this->Speed.c = 0.676*sqrt(2 * alfa / (this->Speed.accerelation)*9.55);
 			return (0);
 		}
-		if (isSpeedReached(1000 * this->Speed.c *this->Speed.interval) && distanceToGo()>0.15*this->Position.distance){
+		if (!isSpeedReached(1000 * this->Speed.c *this->Speed.interval) && distanceToGo()>0.15*this->Position.distance){
 			this->Speed.c -= (2 * this->Speed.c) / (4 * distanceToGo() + 1);
 			return (1000 * this->Speed.c*this->Speed.interval);
 		}
@@ -216,5 +216,7 @@ void Stepper::moveWithBlock(){
 }
 
 bool Stepper::isRunning(){
-	this->Position.current_position == this->Position.target_position ? false : true;
+	if(this->Position.distance==0 || this->Speed.fn==0) return false;
+	else return true;
+	//(this->Position.distance==0 || this->Speed.fn==0) ? false: true;
 }
